@@ -17,3 +17,21 @@ streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?a
 
 // Then we add our 'graymap' tile layer to the map.
 streets.addTo(map);
+
+// let marker = L.marker([34.0522, -118.2437]).addTo(map);
+
+// L.circle([34.0522, -118.2437], {
+//     radius: 100
+//  }).addTo(map);
+
+// L.circle([34.0522, -118.2437], {
+//     radius: 300,
+//     color: 'black',
+//     fillColor: 'yellow'
+//  }).addTo(map);
+
+L.circleMarker([34.0522, -118.2437], {
+    radius: 300,
+    color: 'black',
+    fillColor: 'yellow'
+}).addTo(map);
