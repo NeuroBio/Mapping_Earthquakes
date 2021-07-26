@@ -1,3 +1,6 @@
+// Get data from cities.js
+let cityData = cities;
+
 var map = L.map('mapid').setView([40.7, -94.5], 4);
 
 // let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -17,3 +20,25 @@ streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?a
 
 // Then we add our 'graymap' tile layer to the map.
 streets.addTo(map);
+
+// cityData.forEach(city => {
+//     L.marker(city.location)
+//         .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+//         .addTo(map);
+// });
+
+// cityData.forEach(city => {
+//     L.circleMarker(city.location, {
+//         radius: city.population / 100000
+//         }).bindPopup('<h2>' + city.city + ', ' + city.state + '</h2> <hr> <h3>Population ' + city.population.toLocaleString() + '</h3>')
+//         .addTo(map);
+// });
+
+cityData.forEach(city => {
+    L.circleMarker(city.location, {
+        radius: city.population / 100000,
+        color: 'orange',
+        weight: 4
+        }).bindPopup('<h2>' + city.city + ', ' + city.state + '</h2> <hr> <h3>Population ' + city.population.toLocaleString() + '</h3>')
+        .addTo(map);
+});
