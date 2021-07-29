@@ -27,7 +27,7 @@ const map = L.map('mapid', {
 
 L.control.layers(baseMaps).addTo(map);
 
-const airportData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/static/js/majorAirports.json";
+const airportData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Points/static/js/majorAirports.json";
 
 // Grabbing our GeoJSON data.
 d3.json(airportData).then((data) => {
