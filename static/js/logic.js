@@ -1,36 +1,35 @@
-const light = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+const streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 18,
-  id: 'mapbox/light-v10',
+  id: 'mapbox/streets-v11',
   accessToken: apiKey
 });
 
-const dark = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+const satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
-    id: 'mapbox/dark-v10',
+    id: 'mapbox/satellite-streets-v11',
     accessToken: apiKey
 });
 
 // Create a base layer that holds both maps.
 let baseMaps = {
-  Light: light,
-  Dark: dark
+  Streets: streets,
+  'Satellite Streets': satelliteStreets
 };
 
 
 const map = L.map('mapid', {
-  center: [44.0, -80.0],
-  zoom: 2,
-  layers: [light]
+  center: [43.7, -79.3],
+  zoom: 11,
+  layers: [streets]
 });
 
 L.control.layers(baseMaps).addTo(map);
 
-const airportData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/static/js/majorAirports.json";
-const torontoData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/static/js/torontoRoutes.json";
-
-console.log(torontoData)
+const airportData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/static/js/majorAirports.json";
+const torontoData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/static/js/torontoRoutes.json";
+const torontoHoods = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/static/js/torontoNeighborhoods.json";
 // Grabbing our GeoJSON data.
 
 let myStyle = {
@@ -38,15 +37,10 @@ let myStyle = {
   weight: 2
 }
 
-d3.json(torontoData).then((data) => {
+d3.json(torontoHoods).then((data) => {
   // Creating a GeoJSON layer with the retrieved data.
-  L.geoJson(data, {
-    style: myStyle,
-    onEachFeature: (feature, layer) => {
-      layer.bindPopup(`<h3> Airline: ${feature.properties.airline} </h3><hr>Destination: ${feature.properties.dst}`)
-    }
-  }).addTo(map);
-})
+  L.geoJson(data).addTo(map);
+});
 
 // L.geoJSON(sanFranAirport).addTo(map);
 
