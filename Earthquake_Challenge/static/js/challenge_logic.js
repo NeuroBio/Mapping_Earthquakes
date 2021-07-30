@@ -122,12 +122,12 @@ legend.onAdd = function() {
 
   const magnitudes = [0, 1, 2, 3, 4, 5];
   const colors = [
-    "#98ee00",
-    "#d4ee00",
-    "#eecc00",
-    "#ee9c00",
-    "#ea822c",
-    "#ea2c2c"
+    '#98ee00',
+    '#d4ee00',
+    '#eecc00',
+    '#ee9c00',
+    '#ea822c',
+    '#ea2c2c'
   ];
 
   // Looping through our intervals to generate a label with a colored square for each interval.
@@ -136,16 +136,28 @@ legend.onAdd = function() {
     div.innerHTML +=
       "<i style='background: " + colors[i] + "'></i> " +
       magnitudes[i] + (magnitudes[i + 1] ? "&ndash;" + magnitudes[i + 1] + "<br>" : "+");
-    }
-    return div;
-  };
+  }
+  return div;
+};
 
   // Finally, we our legend to the map.
   legend.addTo(map);
+});
 
 
-  // 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
-  // d3.json().then(() => {
-    
-  // });
+// 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
+const tectonicLink = 'https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json';
+const techStyle = {
+  color: '#ff73d0',
+  weight: 1.5
+};
+d3.json(tectonicLink).then(data => {
+  L.geoJson(data, {
+    style: techStyle,
+    pointToLayer: (feature, latlng) => {
+      return L.marker(latlng)
+    }
+  }).addTo(tectonicPlates)
+
+  tectonicPlates.addTo(map);
 });
