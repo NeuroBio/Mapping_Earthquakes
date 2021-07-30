@@ -30,17 +30,15 @@ L.control.layers(baseMaps).addTo(map);
 const airportData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/static/js/majorAirports.json";
 const torontoData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/static/js/torontoRoutes.json";
 const torontoHoods = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/static/js/torontoNeighborhoods.json";
-// Grabbing our GeoJSON data.
 
 let myStyle = {
-  color: "#ffffa1",
-  weight: 2
+  fillColor: 'yellow',
+  weight: 1
 }
 
 d3.json(torontoHoods).then((data) => {
-  console.log(data)
   // Creating a GeoJSON layer with the retrieved data.
-  L.geoJson(data).addTo(map);
+  L.geoJson(data, {style: myStyle}).addTo(map);
 });
 
 // L.geoJSON(sanFranAirport).addTo(map);
