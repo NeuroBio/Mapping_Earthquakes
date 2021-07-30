@@ -30,13 +30,20 @@ L.control.layers(baseMaps).addTo(map);
 const airportData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/static/js/majorAirports.json";
 const torontoData = "https://raw.githubusercontent.com/NeuroBio/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/static/js/torontoRoutes.json";
 
+console.log(torontoData)
 // Grabbing our GeoJSON data.
+
+let myStyle = {
+  color: "#ffffa1",
+  weight: 2
+}
+
 d3.json(torontoData).then((data) => {
   // Creating a GeoJSON layer with the retrieved data.
   L.geoJson(data, {
-    pointToLayer: (feature, latlng) => {
-      return L.marker(latlng).bindPopup('');
-        // .bindPopup(`<h3>Airport Code: ${feature.properties.faa}</h3><hr> Airport Name: ${feature.properties.name}`)
+    style: myStyle,
+    onEachFeature: (feature, layer) => {
+      layer.bindPopup(`<h3> Airline: ${feature.properties.airline} </h3><hr>Destination: ${feature.properties.dst}`)
     }
   }).addTo(map);
 })
