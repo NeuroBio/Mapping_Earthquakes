@@ -5,3 +5,7 @@ The head of the earthquake disaster response team at nonprofit organization Disa
 
 ## Tools
 `Javascript` with `D3.js` and `leaflet`
+
+## Preview
+Note: this code requires an api key from mapbox
+![maps-preview](resources/MapPreview.png)
