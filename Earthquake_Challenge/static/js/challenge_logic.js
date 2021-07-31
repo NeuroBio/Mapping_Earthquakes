@@ -15,6 +15,7 @@ const satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sa
     accessToken: apiKey
 });
 
+// for deliverable 3
 const dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
@@ -23,9 +24,9 @@ const dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles
 
 // Create the map object with center, zoom level and default layer.
 const map = L.map('mapid', {
-    center: [40.7, -94.5],
-    zoom: 3,
-    layers: [streets]
+  center: [40.7, -94.5],
+  zoom: 3,
+  layers: [streets]
 });
 
 // Create a base layer that holds all three maps.
@@ -163,7 +164,6 @@ legend.addTo(map);
 // 3b. Retrieve the major earthquake GeoJSON data >4.5 mag for the week.
 const majorQuakesLink = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson';
 d3.json(majorQuakesLink).then(data => {
-
 
     //4b.
     function styleInfo(feature) {
