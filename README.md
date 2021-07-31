@@ -5,6 +5,7 @@ The head of the earthquake disaster response team at nonprofit organization Disa
 
 ## Tools
 `Javascript` with `D3.js` and `leaflet`
+
 Techtonic plate GeoJSON data from Hugo Ahlenius, Nordpil and Peter Bird: https://github.com/fraxen/tectonicplates
 
 ## Preview
